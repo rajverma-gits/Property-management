@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load bootstrap5 %}
+
+{% block title %}Property{% endblock title %}
+
+{% block body %}
+<div class="main-container">
+    <div class="container-flex container-fluid px-0 mb-4">
+        <img src="/static/—Pngtree—illustration city street building_4117172.png" class="d-block w-100 h-80 mx-0" alt="...">
+    </div>
+    <div class="container-flex container">
+        <h3 class="text-center">Add Property Info</h3>
+
+        {% for message in messages %}
+        <p>{{message}}</p>
+        {% endfor %}
+
+        <form method="post" action="">
+            {% csrf_token %}
+            {% bootstrap_form form %}
+            <button type="submit" class="btn btn-primary my-2 ">Submit</button>
+        </form>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-md-12">
+        <h2 class="text-center">Previous Feedbacks</h2>
+        <h2 class="text-center"><em>Total: {{feedback|length}}</em></h2>
+        <table class="table table-bordered">
+            <thead>
+                <tr class="table table-dark">
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Type</th>
+                    <th>Status</th>
+                    <th>Location</th>
+                    <th>Owner</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for msg in feedback %}
+                <tr>
+                    <td>{{msg.id}}</td>
+                    <td>{{msg.name}}</td>
+                    <td>{{msg.property_type}}</td>
+                    <td>{{msg.status}}</td>
+                    <td>{{msg.location}}</td>
+                    <td>{{msg.Owner}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+
+{% endblock body %}

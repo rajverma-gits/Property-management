@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% block title %}Index{% endblock title %}
+
+{% block body %}
+<div class="container-fluid">
+    <div class="row">
+            
+        <div style="background-image: linear-gradient(120deg, #89f7fe 0%, #66a6ff 100%);" class="col-md-12 text-center">
+            <h1>Our Properties({{property|length}})</h1>
+        </div>
+        {% for p in property %}
+        <div class="col-md-4 p-4 text-center">
+            <!-- <a href="customer"><button class="background-image: linear-gradient(to top, #48c6ef 0%, #6f86d6 100%);"> -->
+            <a href="customer">
+            <div style="background-image: linear-gradient(120deg, #89f7fe 0%, #66a6ff 100%); border-radius: 20px;" class="p-5">
+                <img src="/media/{{p.prop_image}}" height="200" alt="">
+                <h5 style="color: black; text-decoration: none !important;" >{{p.name}}</h5>
+                <p style="color: black;" >{{p.property_type}}</p>
+                <p style="color: black;" >{{p.status}}</p>
+                <p style="color: black;" >{{p.location}}</p>
+                <p style="color: black;" >{{p.Owner}}</p>
+                <!-- <p>
+                    <a href="customer"><button class="btn btn-secondary">Customer</button></a>
+                </p> -->
+            </div>
+            </a>
+        </div>
+        {% endfor %}
+
+    </div>
+    <!-- <div class="container py-1" id="featured-3">
+
+        <div class="row g-5 py-5">
+
+            <div class="col-md-6 col-lg-4 text-center">
+                <img class="rounded-circle" src="/static/property.png" width="140" height="140">
+
+                <p>
+                    <a href="property"><button class="btn btn-secondary">Property</button></a>
+                </p>
+            </div>
+
+            <div class="col-md-6 col-lg-4 text-center">
+                <img class="rounded-circle" src="/static/owner.png" width="140" height="140">
+
+                <p>
+                    <a href="owner"><button class="btn btn-secondary">owner</button></a>
+                </p>
+            </div>
+            <div class="col-md-6 col-lg-4 text-center">
+                <img class="rounded-circle" src="/static/appointment.jfif" width="140" height="140">
+
+                <p>
+                    <a href="appointment"><button class="btn btn-secondary">Appointment</button></a>
+                </p>
+            </div>
+            <div class="col-md-6 col-lg-4 text-center">
+                <img class="rounded-circle" src="/static/agent.png" width="140" height="140">
+
+                <p>
+                    <a href="agent"><button class="btn btn-secondary">Agent</button></a>
+                </p>
+            </div>
+            <div class="col-md-6 col-lg-4 text-center">
+                <img class="rounded-circle" src="/static/registration.png" width="140" height="140">
+
+                <p>
+                    <a href="registration"><button class="btn btn-secondary">Registration</button></a>
+                </p>
+            </div>
+        </div>
+    </div> -->
+</div>
+{% endblock body %}

@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load bootstrap5 %}
+{% load crispy_forms_tags %}
+
+{% block title %}Property-Agent{% endblock title %}
+
+
+{% block body %}
+<div class="main-container">
+    <div class="container-flex container-fluid px-0 mb-4">
+        <img src="/static/prop-agent.png" class="d-block w-100 h-80 mx-0" alt="...">
+    </div>
+    <div class="container-flex container">
+        <h3 class="text-center">Add Property-Agent info</h3>
+        {% for message in messages %}
+        <p>{{message}}</p>
+        {% endfor %}
+
+        <form method="post" action="">
+            {% csrf_token %}
+            {% bootstrap_form form %}
+            <button type="submit" value="Send" class="btn btn-primary my-2 ">Submit</button>
+        </form>
+
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <h2 class="text-center">Previous Feedbacks</h2>
+        <h2 class="text-center"><em>Total: {{feedback|length}}</em></h2>
+        <table class="table table-bordered">
+            <thead>
+                <tr class="table table-dark">
+                    <th>ID</th>
+                    <th>Property</th>
+                    <th>Agent</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for msg in feedback %}
+                <tr>
+                    <td>{{msg.id}}</td>
+                    <td>{{msg.property}}</td>
+                    <td>{{msg.agent}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+    {% endblock body %}

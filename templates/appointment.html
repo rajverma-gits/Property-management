@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load bootstrap5 %}
+{% load crispy_forms_tags %}
+
+{% block title %}Appointment{% endblock title %}
+
+
+{% block body %}
+<div class="main-container">
+    <div class="container-flex container-fluid px-0 mb-4">
+        <img src="/static/—Pngtree—cartoon hand drawn mobile appointment_5437868 (1).png" class="d-block w-100 h-80 mx-0" alt="...">
+    </div>
+    <div class="container-flex container">
+        <h3 class="text-center">Add appointment info</h3>
+        {% for message in messages %}
+        <p>{{message}}</p>
+        {% endfor %}
+
+        <form method="post" action="">
+            {% csrf_token %}
+            {% bootstrap_form form %}
+            <button type="submit" value="Send" class="btn btn-primary my-2 ">Submit</button>
+        </form>
+
+    </div>
+</div>
+
+{% comment %} <div><a class="btn btn-sm btn-info" href="create_appointment/">Create Appointment</a></div> {% endcomment %}
+
+<div class="row">
+    <div class="col-md-12">
+        <h2 class="text-center">Previous Feedbacks</h2>
+        <h2 class="text-center"><em>Total: {{feedback|length}}</em></h2>
+        <table class="table table-bordered">
+            <thead>
+                <tr class="table table-dark">
+                    <th>ID</th>
+                    <th>Date</th>
+                    <th>Customer</th>
+                    <th>Status</th>
+                    <th>Owner</th>
+                    <!-- <th>Update</th>
+                    <th>Delete</th> -->
+                </tr>
+            </thead>
+            <tbody>
+                {% for msg in feedback %}
+                <tr>
+                    <td>{{msg.id}}</td>
+                    <td>{{msg.date}}</td>
+                    <td>{{msg.customer}}</td>
+                    <td>{{msg.status}}</td>
+                    <td>{{msg.owner}}</td>
+                    <!-- {% comment %} <td><a class="btn btn-sm btn-info" href="{% url 'updateAppointment' msg.id %}">Update</a></td> {% endcomment %}
+                    <td><a class="btn btn-sm btn-info" href="">Update</a></td>
+                    {% comment %} <td><a class="btn btn-sm btn-danger" href="{% url 'delete_appointment' msg.id %}">Delete</a></td> {% endcomment %}
+                    <td><a class="btn btn-sm btn-danger" href="">Delete</a></td> -->
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+    {% endblock body %}

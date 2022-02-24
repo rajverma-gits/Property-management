@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}Appointment Form{% endblock title %}
+
+
+{% block content %}
+<form action="" method="POST">
+    {% csrf_token %}
+    {{form}}
+    <input type="submit" name="Submit" id="">
+</form>
+{% endblock content %}
+
+
+{% block body %}
+
+{% endblock body %}

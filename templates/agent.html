@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% block title %}Agent{% endblock title %}
+{% block body %}
+<div class="main-container">
+    <div class="container-flex container-fluid px-0 mb-4">
+        <img src="/static/real-estate-agent (1).png" class="d-block w-100 h-80 mx-0" alt="...">
+    </div>
+    <div class="container-flex container">
+        <h3 class="text-center">Add Agent Info</h3>
+        
+        {% for message in messages %}
+        <p>{{message}}</p>
+        {% endfor %}
+        
+        <form method="post" action="/agent">
+            {% csrf_token %}
+            <div class="form-group mb-3">
+                <label for="name" class="form-label">Name</label>
+                <input type="name" class="form-control" id="name" name="name" placeholder="Abhinav Gupta" required>
+            </div>
+            <div class="form-group mb-3">
+                <label for="email" class="form-label">Email address</label>
+                <input type="email" class="form-control" id="email" name="email"
+                    placeholder="guptaabhinav103@gmail.com" required>
+            </div>
+            <div class="form-group mb-3">
+                <label for="contact" class="form-label">Contact</label>
+                <input type="phone" class="form-control" id="contact" name="contact" placeholder="123456789" pattern="[1-9]{1}[0-9]{9}" required>
+            </div>
+            <button type="submit" class="btn btn-primary my-2 ">Submit</button>
+        </form>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <h2 class="text-center">Previous Feedbacks</h2>
+        <h2 class="text-center"><em>Total: {{feedback|length}}</em></h2>
+        <table class="table table-bordered">
+            <thead>
+                <tr class="table table-dark">
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Contact</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for msg in feedback %}
+                <tr>
+                    <td>{{msg.id}}</td>
+                    <td>{{msg.name}}</td>
+                    <td>{{msg.email}}</td>
+                    <td>{{msg.contact}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+    {% endblock body %}

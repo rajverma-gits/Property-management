@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block title %}Registration{% endblock title %}
+
+{% block body %}
+<div class="main-container">
+    <div class="container-flex container-fluid px-0 mb-4">
+        <img src="/static/registration.png" class="d-block w-100 h-80 mx-0" alt="...">
+    </div>
+    <div class="container-flex container">
+        <h3 class="text-center">Add Registration Info</h3>
+
+        {% for message in messages %}
+        <p>{{message}}</p>
+        {% endfor %}
+
+        <form method="post" action="/registration">
+            {% csrf_token %}
+            <!-- <div class="form-group mb-3">
+                <label for="regis_id" class="form-label">Registration id</label>
+                <input type="text" class="form-control" id="regis_id" name="regis_id" placeholder="R_01">
+            </div> -->
+            <div class="form-group mb-3">
+                <label for="date" class="form-label">Date</label>
+                <input type="date" class="form-control" id="date" name="date" placeholder="01-06-2021" required>
+            </div>
+            <div class="form-group mb-3">
+                <label for="desc" class="form-label">Description</label>
+                <input type="text" class="form-control" id="desc" name="desc" placeholder="" required>
+            </div>
+            <button type="submit" class="btn btn-primary my-2 ">Submit</button>
+        </form>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-md-12">
+        <h2 class="text-center">Previous Feedbacks</h2>
+        <em>Total: {{feedback|length}}</em>
+        <table class="table table-bordered">
+            <thead>
+                <tr  class="table table-dark">
+                    <th>ID</th>
+                    <th>Date</th>
+                    <th>Desc</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for msg in feedback %}
+                <tr>
+                    <td>{{msg.id}}</td>
+                    <td>{{msg.date}}</td>
+                    <td>{{msg.desc}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+    {% endblock body %}

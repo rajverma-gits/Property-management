@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}Bills{% endblock title %}
+
+{% block body %}
+<table class="table table-bordered">
+  <thead>
+    <tr class="table table-dark">
+      <th scope="col">S.No.</th>
+      <th scope="col">Customer</th>
+      <th scope="col">Owner</th>
+      <th scope="col">PDF</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for bill in object_list %}
+    <tr>
+      {% comment %} <th scope="row">1</th> {% endcomment %}
+      <td>{{bill.id}}</td>
+      <td>{{bill.customer}}</td>
+      <td>{{bill.owner}}</td>
+      <td><a href="{% url 'Home:bill-pdf-view' bill.pk %}"><button class="btn btn-primary">Pdf</button></a></td>
+    </tr>
+    {%endfor%}
+  </tbody>
+</table>
+{% endblock body %}
